@@ -14,6 +14,7 @@
 		D965607524AABE1600A07A82 /* ArtGallery.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D965607324AABE1600A07A82 /* ArtGallery.xcdatamodeld */; };
 		D965607724AABE2C00A07A82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D965607624AABE2C00A07A82 /* Assets.xcassets */; };
 		D965607A24AABE2C00A07A82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D965607824AABE2C00A07A82 /* LaunchScreen.storyboard */; };
+		D965608224AACAA700A07A82 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D965608124AACAA700A07A82 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		D965607624AABE2C00A07A82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D965607924AABE2C00A07A82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D965607B24AABE2C00A07A82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D965608124AACAA700A07A82 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				D965606A24AABE1600A07A82 /* AppDelegate.swift */,
 				D965606C24AABE1600A07A82 /* SceneDelegate.swift */,
 				D965606E24AABE1600A07A82 /* ViewController.swift */,
+				D965608124AACAA700A07A82 /* DetailsViewController.swift */,
 				D965607024AABE1600A07A82 /* Main.storyboard */,
 				D965607624AABE2C00A07A82 /* Assets.xcassets */,
 				D965607824AABE2C00A07A82 /* LaunchScreen.storyboard */,
@@ -145,6 +148,7 @@
 				D965606B24AABE1600A07A82 /* AppDelegate.swift in Sources */,
 				D965607524AABE1600A07A82 /* ArtGallery.xcdatamodeld in Sources */,
 				D965606D24AABE1600A07A82 /* SceneDelegate.swift in Sources */,
+				D965608224AACAA700A07A82 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
