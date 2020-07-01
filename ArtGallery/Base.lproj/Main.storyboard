@@ -32,7 +32,7 @@
                     <navigationItem key="navigationItem" id="7ij-a9-nIi"/>
                     <connections>
                         <outlet property="tableView" destination="SwQ-SK-NIh" id="iMR-UE-Dvd"/>
-                        <segue destination="Cqz-gQ-Xea" kind="show" identifier="toDetailsVC" id="vpf-sX-Tvp"/>
+                        <segue destination="Cqz-gQ-Xea" kind="presentation" identifier="toDetailsVC" id="vpf-sX-Tvp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -44,34 +44,34 @@
             <objects>
                 <viewController id="Cqz-gQ-Xea" customClass="DetailsViewController" customModule="ArtGallery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xeh-1g-tUY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SelectImage" translatesAutoresizingMaskIntoConstraints="NO" id="wpI-9C-Gzi">
-                                <rect key="frame" x="77" y="108" width="260" height="300"/>
+                                <rect key="frame" x="77" y="20" width="260" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="EsH-rz-13k"/>
                                     <constraint firstAttribute="width" constant="260" id="bkt-7d-VYt"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8pu-GH-ja3">
-                                <rect key="frame" x="20" y="428" width="374" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8pu-GH-ja3">
+                                <rect key="frame" x="20" y="340" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="PbW-qs-VHj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Artist" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GBV-Ar-lSo">
-                                <rect key="frame" x="20" y="482" width="374" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Artist" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GBV-Ar-lSo">
+                                <rect key="frame" x="20" y="394" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="idA-HT-eXY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Year" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fDK-e7-tZl">
-                                <rect key="frame" x="20" y="536" width="374" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Year" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fDK-e7-tZl">
+                                <rect key="frame" x="20" y="448" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="sSL-Zy-Mmy"/>
                                 </constraints>
@@ -79,11 +79,10 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jq1-57-yfv">
-                                <rect key="frame" x="177" y="610" width="60" height="40"/>
+                                <rect key="frame" x="80" y="522" width="254" height="40"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="2gJ-gI-EYA"/>
-                                    <constraint firstAttribute="width" constant="60" id="fqo-N8-3nd"/>
                                 </constraints>
                                 <state key="normal" title="Save">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -96,8 +95,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="8pu-GH-ja3" firstAttribute="top" secondItem="wpI-9C-Gzi" secondAttribute="bottom" constant="20" id="2DE-9g-26s"/>
-                            <constraint firstItem="Jq1-57-yfv" firstAttribute="centerX" secondItem="Xeh-1g-tUY" secondAttribute="centerX" id="2eg-Dt-UUX"/>
                             <constraint firstItem="wpI-9C-Gzi" firstAttribute="top" secondItem="Ar4-OV-G0w" secondAttribute="top" constant="20" id="7VQ-hR-usZ"/>
+                            <constraint firstItem="Ar4-OV-G0w" firstAttribute="trailing" secondItem="Jq1-57-yfv" secondAttribute="trailing" constant="80" id="Hi4-bA-NN1"/>
                             <constraint firstItem="GBV-Ar-lSo" firstAttribute="leading" secondItem="Ar4-OV-G0w" secondAttribute="leading" constant="20" id="Itl-j8-Iu4"/>
                             <constraint firstItem="fDK-e7-tZl" firstAttribute="leading" secondItem="Ar4-OV-G0w" secondAttribute="leading" constant="20" id="Kd4-s9-0lb"/>
                             <constraint firstItem="fDK-e7-tZl" firstAttribute="top" secondItem="GBV-Ar-lSo" secondAttribute="bottom" constant="20" id="PPz-1U-nyO"/>
@@ -107,6 +106,7 @@
                             <constraint firstItem="Ar4-OV-G0w" firstAttribute="trailing" secondItem="fDK-e7-tZl" secondAttribute="trailing" constant="20" id="X3A-zn-68N"/>
                             <constraint firstItem="GBV-Ar-lSo" firstAttribute="top" secondItem="8pu-GH-ja3" secondAttribute="bottom" constant="20" id="aYQ-yn-Wue"/>
                             <constraint firstItem="8pu-GH-ja3" firstAttribute="leading" secondItem="Ar4-OV-G0w" secondAttribute="leading" constant="20" id="eh5-H7-Wv3"/>
+                            <constraint firstItem="Jq1-57-yfv" firstAttribute="leading" secondItem="Ar4-OV-G0w" secondAttribute="leading" constant="80" id="voP-5t-dO3"/>
                             <constraint firstItem="Ar4-OV-G0w" firstAttribute="trailing" secondItem="GBV-Ar-lSo" secondAttribute="trailing" constant="20" id="vs0-1N-ueD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ar4-OV-G0w"/>

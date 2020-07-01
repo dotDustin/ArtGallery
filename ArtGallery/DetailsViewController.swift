@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -51,12 +52,16 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        guard let image = info[.originalImage] as? UIImage else {
+        guard let image = info[.editedImage] as? UIImage else {
             fatalError("Image selection failed")
         }
         
         imageView.image = image
         
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
     
@@ -88,6 +93,34 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let newArt = NSEntityDescription.insertNewObject(forEntityName: "Art", into: context)
+        
+        //Attributes
+        newArt.setValue(nameTextField.text!, forKey: "name")
+        newArt.setValue(artistTextField.text!, forKey: "artist")
+        
+        if let year = Int(yearTextField.text ?? "0000") {
+            newArt.setValue(year, forKey: "year")
+        }
+        
+        newArt.setValue(UUID(), forKey: "id")
+        
+        let data = imageView.image?.jpegData(compressionQuality: 0.5)
+        
+        newArt.setValue(data, forKey: "image")
+        
+        do {
+            try context.save()
+            print("art saved")
+            dismiss(animated: true, completion: nil)
+        } catch {
+            print("error saving")
+        }
+        
     }
     
 
