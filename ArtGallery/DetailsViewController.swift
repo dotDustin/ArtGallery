@@ -16,6 +16,8 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var artistTextField: UITextField!
     @IBOutlet weak var yearTextField: UITextField!
     
+    
+    
     @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {
@@ -121,7 +123,12 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
             print("error saving")
         }
         
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newData"), object: nil)
+        
     }
     
-
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
