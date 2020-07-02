@@ -29,7 +29,7 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         saveButton.layer.cornerRadius = 8
         
-        if selectedArtId?.uuidString != "" {
+        if selectedArtId?.uuidString != nil {
             setupArt()
         }
         
