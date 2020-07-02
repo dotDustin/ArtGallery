@@ -11,20 +11,27 @@ import CoreData
 
 class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    // MARK: - Outlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var artistTextField: UITextField!
     @IBOutlet weak var yearTextField: UITextField!
     
-    
-    
     @IBOutlet weak var saveButton: UIButton!
     
+    // MARK: - Variables
+    var selectedArt = ""
+    var selectedArtId : UUID?
+    
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         saveButton.layer.cornerRadius = 8
         
+        if selectedArtId?.uuidString != "" {
+            setupArt()
+        }
         
         // keyboard setup
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -42,6 +49,51 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
+    }
+    
+    // MARK: - Methods
+    func setupArt() {
+        saveButton.isHidden = true
+        imageView.isUserInteractionEnabled = false
+        nameTextField.isUserInteractionEnabled = false
+        artistTextField.isUserInteractionEnabled = false
+        yearTextField.isUserInteractionEnabled = false
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Art")
+        
+        let idString = selectedArtId?.uuidString
+        
+        fetchRequest.predicate = NSPredicate(format: "id = %@", idString!)
+        
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            
+            if results.count > 0 {
+                for result in results as! [NSManagedObject] {
+                    if let name = result.value(forKey: "name") as? String {
+                        nameTextField.text = name
+                    }
+                    if let artist = result.value(forKey: "artist") as? String {
+                        artistTextField.text = artist
+                    }
+                    if let year = result.value(forKey: "year") as? Int {
+                        yearTextField.text = String(year)
+                    }
+                    if let imageData = result.value(forKey: "image") as? Data {
+                        let image = UIImage(data: imageData)
+                        imageView.image = image
+                    }
+                }
+            }
+        } catch {
+            print("retrieval error")
+        }
+        
     }
     
     @objc func selectImage() {
@@ -94,6 +146,7 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
         return keyboardSize.cgRectValue.height/2
     }
     
+    // MARK: - Actions
     @IBAction func saveButtonPressed(_ sender: Any) {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

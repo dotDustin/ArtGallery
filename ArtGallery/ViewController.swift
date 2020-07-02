@@ -18,6 +18,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var nameArray = [String]()
     var idArray = [UUID]()
     
+    var selectedArt = ""
+    var selectedArtId : UUID?
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +32,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("view will appear")
+        
         NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("newData"), object: nil)
     }
 
@@ -47,16 +50,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         do {
             let results = try context.fetch(fetchRequest)
-            
-            for result in results as! [NSManagedObject] {
-                if let name = result.value(forKey: "name") as? String {
-                    self.nameArray.append(name)
+            if results.count > 0 {
+                for result in results as! [NSManagedObject] {
+                    if let name = result.value(forKey: "name") as? String {
+                        self.nameArray.append(name)
+                    }
+                    if let id = result.value(forKey: "id") as? UUID {
+                        self.idArray.append(id)
+                    }
+                    
+                    self.tableView.reloadData()
                 }
-                if let id = result.value(forKey: "id") as? UUID {
-                    self.idArray.append(id)
-                }
-                
-                self.tableView.reloadData()
             }
             
         } catch {
@@ -64,6 +68,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toDetailsVC") {
+            if let viewController = segue.destination as? DetailsViewController {
+                viewController.selectedArtId = selectedArtId
+            }
+        }
+    }
+    
+    
     
     // MARK: - Actions
     @objc func addButtonClicked() {
@@ -82,6 +96,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.textLabel?.text = nameArray[indexPath.row]
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedArt = nameArray[indexPath.row]
+        selectedArtId = idArray[indexPath.row]
+        performSegue(withIdentifier: "toDetailsVC", sender: self)
     }
 
 }
