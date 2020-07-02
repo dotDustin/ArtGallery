@@ -16,6 +16,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: - Variables and Constants
     var nameArray = [String]()
+    var artistArray = [String]()
     var idArray = [UUID]()
     
     var selectedArt = ""
@@ -58,6 +59,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     if let name = result.value(forKey: "name") as? String {
                         self.nameArray.append(name)
                     }
+                    if let name = result.value(forKey: "artist") as? String {
+                        self.artistArray.append(name)
+                    }
                     if let id = result.value(forKey: "id") as? UUID {
                         self.idArray.append(id)
                     }
@@ -94,9 +98,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell()
-        
-        cell.textLabel?.text = nameArray[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            cell.textLabel?.text = nameArray[indexPath.row]
+            cell.detailTextLabel?.text = artistArray[indexPath.row]
         
         return cell
     }
@@ -128,6 +132,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                             if id == idArray[indexPath.row] {
                                 context.delete(result)
                                 nameArray.remove(at: indexPath.row)
+                                artistArray.remove(at: indexPath.row)
                                 idArray.remove(at: indexPath.row)
                                 self.tableView.reloadData()
                                 

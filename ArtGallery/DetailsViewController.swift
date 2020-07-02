@@ -17,6 +17,7 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var artistTextField: UITextField!
     @IBOutlet weak var yearTextField: UITextField!
     
+    @IBOutlet weak var returnButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
     // MARK: - Variables
@@ -31,8 +32,9 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         if selectedArtId?.uuidString != nil {
             setupArt()
-        }
-        
+            returnButton.setTitle("Return", for: .normal)
+        } else {
+            returnButton.setTitle("Cancel", for: .normal)
         // keyboard setup
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(gestureRecognizer)
@@ -43,6 +45,7 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
         imageView.isUserInteractionEnabled = true
         let imageTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImage))
         imageView.addGestureRecognizer(imageTapRecognizer)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -170,7 +173,6 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         do {
             try context.save()
-            print("art saved")
             dismiss(animated: true, completion: nil)
         } catch {
             print("error saving")
@@ -180,7 +182,7 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
         
     }
     
-    @IBAction func cancelButtonPressed(_ sender: Any) {
+    @IBAction func returnButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
